@@ -1,5 +1,5 @@
 # go-ranger
-Collection of little utilities to assist with ranging over slices and maps in go
+Collection of little utilities to assist with ranging over slices in go
 
 <!-- TOC -->
 * [go-ranger](#go-ranger)
