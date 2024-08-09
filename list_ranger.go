@@ -2,7 +2,6 @@ package ranger
 
 import (
 	"context"
-	"slices"
 	"sync"
 )
 
@@ -15,10 +14,6 @@ func NewListRanger[T any](ts ...T) *ListRanger[T] {
 		list: ts,
 	}
 	return &lr
-}
-
-func NewListCloneRanger[T any](ts ...T) *ListRanger[T] {
-	return NewListRanger[T](slices.Clone(ts)...)
 }
 
 // Len returns the number of configured
