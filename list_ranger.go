@@ -79,11 +79,17 @@ func (lr *ListRanger[T]) RangeAsyncChunked(ctx context.Context, n int, cb func(c
 	}
 
 	go func() {
+		var stop bool
 		for i := range lr.list {
-			select {
-			case <-tickets:
-				go fn(i)
-			case <-ctx.Done():
+			if !stop {
+				select {
+				case <-tickets:
+					go fn(i)
+				case <-ctx.Done():
+					stop = true
+				}
+			}
+			if stop {
 				wg.Done()
 			}
 		}
